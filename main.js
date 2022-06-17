@@ -72,13 +72,18 @@ const createTarget = (num) => {
 
 const newCharacter = () => {
     character = createCharacter()
-    mainTarget = {}
-    document.getElementById("subContainer1").style.display = "block"
-    document.getElementById("subContainer2").style.display = "none"
-    let progressBar = document.getElementById("progressBar")
-    progressBar.style.width = (100*character.exp/Math.floor(100 * (1.4 ** (character.lvl-1)))) + "%"
-    printMessage("", "", "")
-    updateAll()
+    if (character.name.length > 1 && character.name[0] != " ") {
+        mainTarget = {}
+        document.getElementById("subContainer1").style.display = "block"
+        document.getElementById("subContainer2").style.display = "none"
+        let progressBar = document.getElementById("progressBar")
+        progressBar.style.width = (100*character.exp/Math.floor(100 * (1.4 ** (character.lvl-1)))) + "%"
+        printMessage("", "", "")
+        updateAll()
+    } else {
+        character = {}
+        document.getElementById("subContainer1").style.display = "none"
+    }
 }
 
 const newTarget = (num) => {
