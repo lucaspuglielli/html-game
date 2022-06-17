@@ -1,0 +1,76 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+th, td {
+    border:1px solid black;
+    text-align: center;
+    width: 44%;
+}
+
+#mainContainer {
+    display: flex;
+    width: 1000px;
+}
+
+#characterContainer {
+    border:1px solid black;
+    text-align: center;
+    padding: 3px;
+    justify-content: center;
+}
+
+#playerImg {
+    background-image: url(./75395d41b1ba64f19f697325a638c849.jpg);
+    width: 200px;
+    height: 200px;
+    background-size: contain;
+    margin: 5px;
+}
+
+#targetImg {
+    background-image: url(./zsolt-kosa-lich-knight-prezi.jpg);
+    width: 200px;
+    height: 200px;
+    background-size: contain;
+    margin: 5px;
+}
+
+#midBox{
+    width: 100%;
+}
+
+#messageBox{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 78%;
+    box-sizing: border-box;
+    border: 1px solid black;
+}
+
+#expBar{
+    height: 2%;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+#progressBar{
+    height: 100%;
+    width: 0%;
+    box-sizing: border-box;
+    background-color: green;
+}
+
+#buttonBox{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 20%;
+    box-sizing: border-box;
+    border: 1px solid black;
+    flex-direction: column;
+}

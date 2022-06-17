@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./main.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="mainContainer">
+        <div id="characterContainer">
+            <div id="playerName">Character</div>
+            <div id="playerImg"></div>
+            <table>
+                <tr>
+                    <td>Level:</td>
+                    <td id="playerLvl"></td>
+                </tr>
+                <tr>
+                    <td>Health:</td>
+                    <td id="playerHp"></td>
+                </tr>
+                <tr>
+                    <td>Mana:</td>
+                    <td id="playerMp"></td>
+                </tr>
+                <tr>
+                    <td>Armor:</td>
+                    <td id="playerArmor"></td>
+                </tr>
+                <tr>
+                    <td>Dodge:</td>
+                    <td id="playerDodge"></td>
+                </tr>
+                <tr>
+                    <td>Weapon min:</td>
+                    <td id="playerWeaponMin"></td>
+                </tr>
+                <tr>
+                    <td>Weapon max:</td>
+                    <td id="playerWeaponMax"></td>
+                </tr>
+                <tr>
+                    <td>Strength:</td>
+                    <td id="playerStr"></td>
+                </tr>
+                <tr>
+                    <td>Dexterity:</td>
+                    <td id="playerDex"></td>
+                </tr>
+                <tr>
+                    <td>Intelligence:</td>
+                    <td id="playerInt"></td>
+                </tr>
+                <tr>
+                    <td>Constitution:</td>
+                    <td id="playerCon"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="midBox">
+            <div id="messageBox">
+                <div id="message"></div>
+                <div id="message2"></div>
+                <div id="message3"></div>
+            </div>
+            <div id="expBar">
+                <div id="progressBar"></div>
+            </div>
+            <div id="buttonBox">
+                <div>
+                    <button onclick="newCharacter()">New Character</button>
+                    <button onclick="newTarget()">New Enemy</button>
+                </div>
+                <div>
+                    <button onclick="upStr()">Strength</button>
+                    <button onclick="upDex()">Dexterity</button>
+                    <button onclick="upInt()">Intelligence</button>
+                    <button onclick="upCon()">Constitution</button>
+                </div>
+                <div>
+                    <button onclick="rest()">Rest</button>
+                    <button onclick="playerAtk()">Player Attack</button>
+                    <button onclick="targetAtk()">Enemy Attack</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="characterContainer">
+            <div id="targetName">Enemy</div>
+            <div id="targetImg"></div>
+            <table>
+                <tr>
+                    <td>Level:</td>
+                    <td id="targetLvl"></td>
+                </tr>
+                <tr>
+                    <td>Health:</td>
+                    <td id="targetHp"></td>
+                </tr>
+                <tr>
+                    <td>Mana:</td>
+                    <td id="targetMp"></td>
+                </tr>
+                <tr>
+                    <td>Armor:</td>
+                    <td id="targetArmor"></td>
+                </tr>
+                <tr>
+                    <td>Dodge:</td>
+                    <td id="targetDodge"></td>
+                </tr>
+                <tr>
+                    <td>Weapon min:</td>
+                    <td id="targetWeaponMin"></td>
+                </tr>
+                <tr>
+                    <td>Weapon max:</td>
+                    <td id="targetWeaponMax"></td>
+                </tr>
+                <tr>
+                    <td>Strength:</td>
+                    <td id="targetStr"></td>
+                </tr>
+                <tr>
+                    <td>Dexterity:</td>
+                    <td id="targetDex"></td>
+                </tr>
+                <tr>
+                    <td>Intelligence:</td>
+                    <td id="targetInt"></td>
+                </tr>
+                <tr>
+                    <td>Constitution:</td>
+                    <td id="targetCon"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
