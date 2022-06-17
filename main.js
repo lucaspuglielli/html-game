@@ -173,28 +173,32 @@ const playerAtk = () => {
 }
 
 const targetAtk = () => {
-    if (character.hp > 0) {
-        let hit = (Math.floor(Math.random() * 101)+(mainTarget.dex-1)*5)
-        if (hit >= character.dodge) {
-            let damagePre = (Math.floor(Math.random() * (mainTarget.str+1)) + mainTarget.weaponMin + Math.floor(Math.random() * (mainTarget.weaponMax-mainTarget.weaponMin+1)))
-            let damagePos
-            if (damagePre > character.armor) {
-                damagePos = (damagePre - character.armor)
-            } else {
-                damagePos = 0 
+    if(mainTarget.hp > 0) {
+        if (character.hp > 0) {
+            let hit = (Math.floor(Math.random() * 101)+(mainTarget.dex-1)*5)
+            if (hit >= character.dodge) {
+                let damagePre = (Math.floor(Math.random() * (mainTarget.str+1)) + mainTarget.weaponMin + Math.floor(Math.random() * (mainTarget.weaponMax-mainTarget.weaponMin+1)))
+                let damagePos
+                if (damagePre > character.armor) {
+                    damagePos = (damagePre - character.armor)
+                } else {
+                    damagePos = 0 
+                }
+                character.hp -= damagePos
+                if (character.hp <= 0) {
+                    printMessage("Seu alvo causou " + damagePos + " de dano em você.", "Você morreu.", "")
+                } else {
+                    printMessage("Seu alvo causou " + damagePos + " de dano em você.", "", "")
+                }
             }
-            character.hp -= damagePos
-            if (character.hp <= 0) {
-                printMessage("Seu alvo causou " + damagePos + " de dano em você.", "Você morreu.", "")
-            } else {
-                printMessage("Seu alvo causou " + damagePos + " de dano em você.", "", "")
+            else {
+                printMessage("Seu alvo errou o ataque.", "", "")
             }
-        }
-        else {
-            printMessage("Seu alvo errou o ataque.", "", "")
+        } else {
+            printMessage("Você morreu.", "", "")
         }
     } else {
-        printMessage("Você morreu.", "", "")
+        printMessage("Seu alvo está morto.", "", "")
     }
     updateAll()
 }
