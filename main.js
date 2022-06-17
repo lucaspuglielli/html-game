@@ -1,6 +1,5 @@
 let character 
 let mainTarget
-let day
 
 const createCharacter = () => {
     let name = prompt("Qual seu nome?")
@@ -35,139 +34,152 @@ const createCharacter = () => {
     }
 }
 
-const createTarget = () => {
-    let name = "Boss"
-    let lvl = 1 + (character.lvl-1)
-    let con = 2 + (character.lvl-1)
-    let str = 2 + (character.lvl-1)
-    let dex = 2 + (character.lvl-1)
-    let hp = 100+((con-1)*10)
-    let mp = 100
-    let armor = 0
-    let dodge = 30+((dex-1)*5)
-    let weaponMin = 0
-    let weaponMax = 3
-    let int = 1
-    let exp = Math.floor(120 * (1.1 ** (lvl-1)))
-    let gold = Math.floor(30 * (1.1 ** (lvl-1)))
+const createTarget = (num) => {
+    // let name = "Boss"
+    // let lvl = 1 + (character.lvl-1)
+    // let con = 2 + (character.lvl-1)
+    // let str = 2 + (character.lvl-1)
+    // let dex = 2 + (character.lvl-1)
+    // let hp = 100+((con-1)*10)
+    // let mp = 100
+    // let armor = 0
+    // let dodge = 30+((dex-1)*5)
+    // let weaponMin = 0
+    // let weaponMax = 3
+    // let int = 1
+    // let exp = Math.floor(120 * (1.1 ** (lvl-1)))
+    // let gold = Math.floor(30 * (1.1 ** (lvl-1)))
+    let target = targetSelect(num)
+    document.getElementById("targetImg").style.backgroundImage = "url('" + target.photo + "')"
+    document.getElementById("subContainer2").style.display = "block"
     return {
-        name,
-        hp,
-        mp,
-        armor,
-        dodge,
-        weaponMin,
-        weaponMax,
-        str,
-        dex,
-        int,
-        con,
-        lvl,
-        gold,
-        exp
+        name:target.name,
+        hp:100+((target.con-1)*10),
+        mp:100+((target.int-1)*10),
+        armor:target.armor,
+        dodge:30+((target.dex-1)*5),
+        weaponMin:target.weaponMin,
+        weaponMax:target.weaponMax,
+        str:target.str,
+        dex:target.dex,
+        int:target.int,
+        con:target.con,
+        lvl:target.lvl,
+        gold:target.gold,
+        exp:target.exp
     }
 }
-
-// const resetProgress = () => {
-    
-// }
 
 const newCharacter = () => {
     character = createCharacter()
+    mainTarget = {}
+    document.getElementById("subContainer1").style.display = "block"
+    document.getElementById("subContainer2").style.display = "none"
     let progressBar = document.getElementById("progressBar")
     progressBar.style.width = (100*character.exp/Math.floor(100 * (1.4 ** (character.lvl-1)))) + "%"
     printMessage("", "", "")
-    updatePlayer()
-    // resetProgress()
+    updateAll()
 }
 
-const newTarget = () => {
-    mainTarget = createTarget()
-    updateTarget()
+const newTarget = (num) => {
+    if(character.hp > 0) {
+        mainTarget = createTarget(num)
+        updateTarget()
+    }
 }
 
 const upStr = () => {
-    if (character.pts >= 1) {
-        character.str += 1
-        character.pts -= 1
-        printMessage("Você ganhou 1 nivel em Força.", character.pts + " pontos restantes.", "")
+    if (character.hp > 0) {
+        if (character.pts >= 1) {
+            character.str += 1
+            character.pts -= 1
+            printMessage("Você ganhou 1 nivel em Força.", character.pts + " pontos restantes.", "")
+        }
+        else {
+            printMessage("Pontos insuficientes.", character.pts + " pontos restantes.", "")
+        }
+        updatePlayer()
     }
-    else {
-        printMessage("Pontos insuficientes.", character.pts + " pontos restantes.", "")
-    }
-    updatePlayer()
 }
 const upDex = () => {
-    if (character.pts >= 1) {
-        character.dex += 1
-        character.pts -= 1
-        character.dodge = 30+((character.dex-1)*5)
-        printMessage("Você ganhou 1 nivel em Destreza.", character.pts + " pontos restantes.", "")
+    if (character.hp > 0) {
+        if (character.pts >= 1) {
+            character.dex += 1
+            character.pts -= 1
+            character.dodge = 30+((character.dex-1)*5)
+            printMessage("Você ganhou 1 nivel em Destreza.", character.pts + " pontos restantes.", "")
+        }
+        else {
+            printMessage("Pontos insuficientes.", character.pts + " pontos restantes.", "")
+        }
+        updatePlayer()
     }
-    else {
-        printMessage("Pontos insuficientes.", character.pts + " pontos restantes.", "")
-    }
-    updatePlayer()
 }
 const upInt = () => {
-    if (character.pts >= 1) {
-        character.int += 1
-        character.pts -= 1
-        character.mp = 100+((character.int-1)*10)
-        printMessage("Você ganhou 1 nivel em Inteligência.", character.pts + " pontos restantes.", "")
+    if (character.hp > 0) {
+        if (character.pts >= 1) {
+            character.int += 1
+            character.pts -= 1
+            character.mp = 100+((character.int-1)*10)
+            printMessage("Você ganhou 1 nivel em Inteligência.", character.pts + " pontos restantes.", "")
+        }
+        else {
+            printMessage("Pontos insuficientes.", character.pts + " pontos restantes.", "")
+        }
+        updatePlayer()
     }
-    else {
-        printMessage("Pontos insuficientes.", character.pts + " pontos restantes.", "")
-    }
-    updatePlayer()
 }
 const upCon = () => {
-    if (character.pts >= 1) {
-        character.con += 1
-        character.pts -= 1
-        character.hp = 100+((character.con-1)*10)
-        printMessage("Você ganhou 1 nivel em Constituição.", character.pts + " pontos restantes.", "")
-    }
-    else {
-        printMessage("Pontos insuficientes.", character.pts + " pontos restantes.", "")
-    }
-    updatePlayer()
+    if (character.hp > 0) {
+        if (character.pts >= 1) {
+            character.con += 1
+            character.pts -= 1
+            character.hp = 100+((character.con-1)*10)
+            printMessage("Você ganhou 1 nivel em Constituição.", character.pts + " pontos restantes.", "")
+        }
+        else {
+            printMessage("Pontos insuficientes.", character.pts + " pontos restantes.", "")
+        }
+        updatePlayer()
+    } 
 }
 
 const rest = () => {
-    character.hp = 100+((character.con-1)*10)
-    character.mp = 100+((character.int-1)*10)
-    character.dodge = 30+((character.dex-1)*5)
-    // day.time = 1
-    printMessage("Você está descansado.", "", "")
-    updatePlayer()
+    if (character.hp > 0) {
+        character.hp = 100+((character.con-1)*10)
+        character.mp = 100+((character.int-1)*10)
+        character.dodge = 30+((character.dex-1)*5)
+        printMessage("Você está descansado.", "", "")
+        updatePlayer()
+    }
 }
 
 const playerAtk = () => {
-    if (mainTarget.hp > 0) {
-        let hit = (Math.floor(Math.random() * 101)+(character.dex-1)*5)
-        if (hit >= mainTarget.dodge) {
-            let damagePre = (Math.floor(Math.random() * (character.str+1)) + character.weaponMin + Math.floor(Math.random() * (character.weaponMax-character.weaponMin+1)))
-            let damagePos
-            if (damagePre > mainTarget.armor) {
-                damagePos = (damagePre - mainTarget.armor)
-            } else {
-                damagePos = 0 
+    if(character.hp > 0) {
+        if (mainTarget.hp > 0) {
+            let hit = (Math.floor(Math.random() * 101)+(character.dex-1)*5)
+            if (hit >= mainTarget.dodge) {
+                let damagePre = (Math.floor(Math.random() * (character.str+1)) + character.weaponMin + Math.floor(Math.random() * (character.weaponMax-character.weaponMin+1)))
+                let damagePos
+                if (damagePre > mainTarget.armor) {
+                    damagePos = (damagePre - mainTarget.armor)
+                } else {
+                    damagePos = 0 
+                }
+                mainTarget.hp -= damagePos
+                if (mainTarget.hp <= 0) {
+                    // character.exp += mainTarget.exp
+                    document.getElementById("subContainer2").style.display = "none"
+                    printMessage("Você causou " + damagePos + " de dano.", "O alvo está morto.", "Você ganhou " + mainTarget.exp + " de exp.")
+                    upExp(mainTarget.exp)
+                } else {
+                    printMessage("Você causou " + damagePos + " de dano.", "", "")
+                }
             }
-            mainTarget.hp -= damagePos
-            if (mainTarget.hp <= 0) {
-                // character.exp += mainTarget.exp
-                printMessage("Você causou " + damagePos + " de dano.", "O alvo está morto.", "Você ganhou " + mainTarget.exp + " de exp.")
-                upExp(mainTarget.exp)
-            } else {
-                printMessage("Você causou " + damagePos + " de dano.", "", "")
+            else {
+                printMessage("Você errou o ataque.", "", "")
             }
         }
-        else {
-            printMessage("Você errou o ataque.", "", "")
-        }
-    } else {
-        printMessage("O alvo já está morto, continuar batendo não terá efeito.", "", "")
     }
     updateAll()
 }
@@ -186,6 +198,7 @@ const targetAtk = () => {
                 }
                 character.hp -= damagePos
                 if (character.hp <= 0) {
+                    document.getElementById("subContainer1").style.display = "none"
                     printMessage("Seu alvo causou " + damagePos + " de dano em você.", "Você morreu.", "")
                 } else {
                     printMessage("Seu alvo causou " + damagePos + " de dano em você.", "", "")
@@ -194,11 +207,7 @@ const targetAtk = () => {
             else {
                 printMessage("Seu alvo errou o ataque.", "", "")
             }
-        } else {
-            printMessage("Você morreu.", "", "")
         }
-    } else {
-        printMessage("Seu alvo está morto.", "", "")
     }
     updateAll()
 }
@@ -237,7 +246,6 @@ const updateTarget = () => {
     document.getElementById("targetDex").innerHTML = mainTarget.dex
     document.getElementById("targetInt").innerHTML = mainTarget.int
     document.getElementById("targetCon").innerHTML = mainTarget.con
-    // document.getElementById("targetExp").innerHTML = mainTarget.exp
 }
 
 const updateAll = () => {
@@ -264,7 +272,6 @@ const upExp = (exp) => {
     } else {
         character.exp += exp
     }
-
     let progressBar = document.getElementById("progressBar")
     progressBar.style.width = (100*character.exp/Math.floor(100 * (1.4 ** (character.lvl-1)))) + "%"
     updatePlayer()

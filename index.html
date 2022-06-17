@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./characters.js"></script>
     <script src="./main.js"></script>
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
@@ -11,54 +12,56 @@
 <body>
     <div id="mainContainer">
         <div id="characterContainer">
-            <div id="playerName">Character</div>
-            <div id="playerImg"></div>
-            <table>
-                <tr>
-                    <td>Level:</td>
-                    <td id="playerLvl"></td>
-                </tr>
-                <tr>
-                    <td>Health:</td>
-                    <td id="playerHp"></td>
-                </tr>
-                <tr>
-                    <td>Mana:</td>
-                    <td id="playerMp"></td>
-                </tr>
-                <tr>
-                    <td>Armor:</td>
-                    <td id="playerArmor"></td>
-                </tr>
-                <tr>
-                    <td>Dodge:</td>
-                    <td id="playerDodge"></td>
-                </tr>
-                <tr>
-                    <td>Weapon min:</td>
-                    <td id="playerWeaponMin"></td>
-                </tr>
-                <tr>
-                    <td>Weapon max:</td>
-                    <td id="playerWeaponMax"></td>
-                </tr>
-                <tr>
-                    <td>Strength:</td>
-                    <td id="playerStr"></td>
-                </tr>
-                <tr>
-                    <td>Dexterity:</td>
-                    <td id="playerDex"></td>
-                </tr>
-                <tr>
-                    <td>Intelligence:</td>
-                    <td id="playerInt"></td>
-                </tr>
-                <tr>
-                    <td>Constitution:</td>
-                    <td id="playerCon"></td>
-                </tr>
-            </table>
+            <div id="subContainer1">
+                <div id="playerName">Character</div>
+                <div id="playerImg"></div>
+                <table>
+                    <tr>
+                        <td>Level:</td>
+                        <td id="playerLvl"></td>
+                    </tr>
+                    <tr>
+                        <td>Health:</td>
+                        <td id="playerHp"></td>
+                    </tr>
+                    <tr>
+                        <td>Mana:</td>
+                        <td id="playerMp"></td>
+                    </tr>
+                    <tr>
+                        <td>Armor:</td>
+                        <td id="playerArmor"></td>
+                    </tr>
+                    <tr>
+                        <td>Dodge:</td>
+                        <td id="playerDodge"></td>
+                    </tr>
+                    <tr>
+                        <td>Weapon min:</td>
+                        <td id="playerWeaponMin"></td>
+                    </tr>
+                    <tr>
+                        <td>Weapon max:</td>
+                        <td id="playerWeaponMax"></td>
+                    </tr>
+                    <tr>
+                        <td>Strength:</td>
+                        <td id="playerStr"></td>
+                    </tr>
+                    <tr>
+                        <td>Dexterity:</td>
+                        <td id="playerDex"></td>
+                    </tr>
+                    <tr>
+                        <td>Intelligence:</td>
+                        <td id="playerInt"></td>
+                    </tr>
+                    <tr>
+                        <td>Constitution:</td>
+                        <td id="playerCon"></td>
+                    </tr>
+                </table>
+            </div>
         </div>
 
         <div id="midBox">
@@ -73,7 +76,9 @@
             <div id="buttonBox">
                 <div>
                     <button onclick="newCharacter()">New Character</button>
-                    <button onclick="newTarget()">New Enemy</button>
+                    <button onclick="newTarget(0)">Knight</button>
+                    <button onclick="newTarget(1)">Archer</button>
+                    <button onclick="newTarget(2)">Mage</button>
                 </div>
                 <div>
                     <button onclick="upStr()">Strength</button>
@@ -90,54 +95,56 @@
         </div>
 
         <div id="characterContainer">
-            <div id="targetName">Enemy</div>
-            <div id="targetImg"></div>
-            <table>
-                <tr>
-                    <td>Level:</td>
-                    <td id="targetLvl"></td>
-                </tr>
-                <tr>
-                    <td>Health:</td>
-                    <td id="targetHp"></td>
-                </tr>
-                <tr>
-                    <td>Mana:</td>
-                    <td id="targetMp"></td>
-                </tr>
-                <tr>
-                    <td>Armor:</td>
-                    <td id="targetArmor"></td>
-                </tr>
-                <tr>
-                    <td>Dodge:</td>
-                    <td id="targetDodge"></td>
-                </tr>
-                <tr>
-                    <td>Weapon min:</td>
-                    <td id="targetWeaponMin"></td>
-                </tr>
-                <tr>
-                    <td>Weapon max:</td>
-                    <td id="targetWeaponMax"></td>
-                </tr>
-                <tr>
-                    <td>Strength:</td>
-                    <td id="targetStr"></td>
-                </tr>
-                <tr>
-                    <td>Dexterity:</td>
-                    <td id="targetDex"></td>
-                </tr>
-                <tr>
-                    <td>Intelligence:</td>
-                    <td id="targetInt"></td>
-                </tr>
-                <tr>
-                    <td>Constitution:</td>
-                    <td id="targetCon"></td>
-                </tr>
-            </table>
+            <div id="subContainer2">
+                <div id="targetName">Enemy</div>
+                <div id="targetImg"></div>
+                <table>
+                    <tr>
+                        <td>Level:</td>
+                        <td id="targetLvl"></td>
+                    </tr>
+                    <tr>
+                        <td>Health:</td>
+                        <td id="targetHp"></td>
+                    </tr>
+                    <tr>
+                        <td>Mana:</td>
+                        <td id="targetMp"></td>
+                    </tr>
+                    <tr>
+                        <td>Armor:</td>
+                        <td id="targetArmor"></td>
+                    </tr>
+                    <tr>
+                        <td>Dodge:</td>
+                        <td id="targetDodge"></td>
+                    </tr>
+                    <tr>
+                        <td>Weapon min:</td>
+                        <td id="targetWeaponMin"></td>
+                    </tr>
+                    <tr>
+                        <td>Weapon max:</td>
+                        <td id="targetWeaponMax"></td>
+                    </tr>
+                    <tr>
+                        <td>Strength:</td>
+                        <td id="targetStr"></td>
+                    </tr>
+                    <tr>
+                        <td>Dexterity:</td>
+                        <td id="targetDex"></td>
+                    </tr>
+                    <tr>
+                        <td>Intelligence:</td>
+                        <td id="targetInt"></td>
+                    </tr>
+                    <tr>
+                        <td>Constitution:</td>
+                        <td id="targetCon"></td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </body>

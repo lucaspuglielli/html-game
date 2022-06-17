@@ -16,13 +16,21 @@ th, td {
 
 #characterContainer {
     border:1px solid black;
+    display: flex;
+    width: 210px;
+    /* box-sizing: content-box; */
+    height: 494px;
     text-align: center;
     padding: 3px;
     justify-content: center;
 }
 
+#subContainer1, #subContainer2{
+    display: none;
+}
+
 #playerImg {
-    background-image: url(./75395d41b1ba64f19f697325a638c849.jpg);
+    background-image: url(./image/75395d41b1ba64f19f697325a638c849.jpg);
     width: 200px;
     height: 200px;
     background-size: contain;
@@ -30,7 +38,7 @@ th, td {
 }
 
 #targetImg {
-    background-image: url(./zsolt-kosa-lich-knight-prezi.jpg);
+    /* background-image: url(./image/zsolt-kosa-lich-knight-prezi.jpg); */
     width: 200px;
     height: 200px;
     background-size: contain;
@@ -38,7 +46,7 @@ th, td {
 }
 
 #midBox{
-    width: 100%;
+    width: 564px;
 }
 
 #messageBox{
