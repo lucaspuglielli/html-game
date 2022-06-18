@@ -12,6 +12,7 @@
 <body>
     <div id="mainContainer">
         <div id="characterContainer">
+            <button onclick="newCharacter()" id="newCharacter">New Character</button>
             <div id="subContainer1">
                 <div id="playerName">Character</div>
                 <div id="playerImg"></div>
@@ -45,19 +46,19 @@
                         <td id="playerWeaponMax"></td>
                     </tr>
                     <tr>
-                        <td>Strength:</td>
+                        <td><button onclick="upStr()" class="statsButton">Strength:</button></td>
                         <td id="playerStr"></td>
                     </tr>
                     <tr>
-                        <td>Dexterity:</td>
+                        <td><button onclick="upDex()" class="statsButton">Dexterity:</button></td>
                         <td id="playerDex"></td>
                     </tr>
                     <tr>
-                        <td>Intelligence:</td>
+                        <td><button onclick="upInt()" class="statsButton">Intelligence:</button></td>
                         <td id="playerInt"></td>
                     </tr>
                     <tr>
-                        <td>Constitution:</td>
+                        <td><button onclick="upCon()" class="statsButton">Constitution:</button></td>
                         <td id="playerCon"></td>
                     </tr>
                 </table>
@@ -74,22 +75,17 @@
                 <div id="progressBar"></div>
             </div>
             <div id="buttonBox">
-                <div>
-                    <button onclick="newCharacter()">New Character</button>
+                <div id="subButtonBox1">
+                    <button onclick="rest()">Rest</button>
                     <button onclick="newTarget(0)">Knight</button>
                     <button onclick="newTarget(1)">Archer</button>
                     <button onclick="newTarget(2)">Mage</button>
                 </div>
-                <div>
-                    <button onclick="upStr()">Strength</button>
-                    <button onclick="upDex()">Dexterity</button>
-                    <button onclick="upInt()">Intelligence</button>
-                    <button onclick="upCon()">Constitution</button>
+                <div id="subButtonBox2">
+                    <button onclick="playerAtk()" id="playerAtk">Player Attack</button>
                 </div>
-                <div>
-                    <button onclick="rest()">Rest</button>
-                    <button onclick="playerAtk()">Player Attack</button>
-                    <button onclick="targetAtk()">Enemy Attack</button>
+                <div id="subButtonBox3">
+                    <button onclick="targetAtk()" id="targetAtk">Enemy Attack</button>
                 </div>
             </div>
         </div>

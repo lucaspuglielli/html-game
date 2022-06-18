@@ -74,7 +74,9 @@ const newCharacter = () => {
     character = createCharacter()
     if (character.name.length > 1 && character.name[0] != " ") {
         mainTarget = {}
+        document.getElementById("newCharacter").style.display = "none"
         document.getElementById("subContainer1").style.display = "block"
+        document.getElementById("subButtonBox1").style.display = "block"
         document.getElementById("subContainer2").style.display = "none"
         let progressBar = document.getElementById("progressBar")
         progressBar.style.width = (100*character.exp/Math.floor(100 * (1.4 ** (character.lvl-1)))) + "%"
@@ -83,12 +85,15 @@ const newCharacter = () => {
     } else {
         character = {}
         document.getElementById("subContainer1").style.display = "none"
+        document.getElementById("newCharacter").style.display = "block"
     }
 }
 
 const newTarget = (num) => {
     if(character.hp > 0) {
         mainTarget = createTarget(num)
+        document.getElementById("subButtonBox1").style.display = "none"
+        document.getElementById("subButtonBox2").style.display = "block"
         updateTarget()
     }
 }
@@ -174,15 +179,21 @@ const playerAtk = () => {
                 mainTarget.hp -= damagePos
                 if (mainTarget.hp <= 0) {
                     // character.exp += mainTarget.exp
-                    document.getElementById("subContainer2").style.display = "none"
                     printMessage("Você causou " + damagePos + " de dano.", "O alvo está morto.", "Você ganhou " + mainTarget.exp + " de exp.")
                     upExp(mainTarget.exp)
+                    document.getElementById("subContainer2").style.display = "none"
+                    document.getElementById("subButtonBox1").style.display = "block"
+                    document.getElementById("subButtonBox2").style.display = "none"
                 } else {
                     printMessage("Você causou " + damagePos + " de dano.", "", "")
+                    document.getElementById("subButtonBox2").style.display = "none"
+                    document.getElementById("subButtonBox3").style.display = "block"
                 }
             }
             else {
                 printMessage("Você errou o ataque.", "", "")
+                document.getElementById("subButtonBox2").style.display = "none"
+                document.getElementById("subButtonBox3").style.display = "block"
             }
         }
     }
@@ -204,13 +215,19 @@ const targetAtk = () => {
                 character.hp -= damagePos
                 if (character.hp <= 0) {
                     document.getElementById("subContainer1").style.display = "none"
+                    document.getElementById("newCharacter").style.display = "block"
+                    document.getElementById("subButtonBox3").style.display = "none"
                     printMessage("Seu alvo causou " + damagePos + " de dano em você.", "Você morreu.", "")
                 } else {
                     printMessage("Seu alvo causou " + damagePos + " de dano em você.", "", "")
+                    document.getElementById("subButtonBox3").style.display = "none"
+                    document.getElementById("subButtonBox2").style.display = "block"
                 }
             }
             else {
                 printMessage("Seu alvo errou o ataque.", "", "")
+                document.getElementById("subButtonBox3").style.display = "none"
+                document.getElementById("subButtonBox2").style.display = "block"
             }
         }
     }

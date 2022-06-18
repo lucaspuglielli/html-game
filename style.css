@@ -3,10 +3,11 @@ body {
     justify-content: center;
 }
 
-th, td {
+td {
     border:1px solid black;
     text-align: center;
     width: 44%;
+    height: 21px;
 }
 
 #mainContainer {
@@ -18,11 +19,16 @@ th, td {
     border:1px solid black;
     display: flex;
     width: 210px;
-    /* box-sizing: content-box; */
-    height: 494px;
+    min-height: 527px;
     text-align: center;
     padding: 3px;
     justify-content: center;
+}
+
+#newCharacter{
+    display: block;
+    align-self: center;
+    height: 25px;
 }
 
 #subContainer1, #subContainer2{
@@ -38,11 +44,14 @@ th, td {
 }
 
 #targetImg {
-    /* background-image: url(./image/zsolt-kosa-lich-knight-prezi.jpg); */
     width: 200px;
     height: 200px;
     background-size: contain;
     margin: 5px;
+}
+
+.statsButton{
+    width: 100%;
 }
 
 #midBox{
@@ -81,4 +90,8 @@ th, td {
     box-sizing: border-box;
     border: 1px solid black;
     flex-direction: column;
+}
+
+#subButtonBox1, #subButtonBox2, #subButtonBox3{
+    display: none;
 }
