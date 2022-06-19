@@ -16,6 +16,7 @@ const createCharacter = () => {
     let lvl = 1
     let exp = 0
     let pts = 5
+    let gold = 0
     return {
         name,
         hp,
@@ -30,7 +31,8 @@ const createCharacter = () => {
         con,
         lvl,
         exp,
-        pts
+        pts,
+        gold
     }
 }
 
@@ -75,16 +77,24 @@ const newCharacter = () => {
     if (character.name.length > 1 && character.name[0] != " ") {
         mainTarget = {}
         document.getElementById("newCharacter").style.display = "none"
+        document.getElementById("subButtonBox1").style.display = "none"
+        document.getElementById("subButtonBox2").style.display = "none"
+        document.getElementById("subButtonBox3").style.display = "none"
+        document.getElementById("subButtonBox4").style.display = "block"
         document.getElementById("subContainer1").style.display = "block"
-        document.getElementById("subButtonBox1").style.display = "block"
         document.getElementById("subContainer2").style.display = "none"
         let progressBar = document.getElementById("progressBar")
         progressBar.style.width = (100*character.exp/Math.floor(100 * (1.4 ** (character.lvl-1)))) + "%"
-        printMessage("", "", "")
+        printMessage("Você possui " + character.pts + " pontos para distribuir.", "", "")
         updateAll()
     } else {
         character = {}
         document.getElementById("subContainer1").style.display = "none"
+        document.getElementById("subContainer2").style.display = "none"
+        document.getElementById("subButtonBox1").style.display = "none"
+        document.getElementById("subButtonBox2").style.display = "none"
+        document.getElementById("subButtonBox3").style.display = "none"
+        document.getElementById("subButtonBox4").style.display = "none"
         document.getElementById("newCharacter").style.display = "block"
     }
 }
@@ -104,9 +114,19 @@ const upStr = () => {
             character.str += 1
             character.pts -= 1
             printMessage("Você ganhou 1 nivel em Força.", character.pts + " pontos restantes.", "")
+            if (character.pts == 0) {
+                document.getElementById("subButtonBox1").style.display = "block"
+                document.getElementById("subButtonBox2").style.display = "none"
+                document.getElementById("subButtonBox3").style.display = "none"
+                document.getElementById("subButtonBox4").style.display = "none"
+            }
         }
         else {
             printMessage("Pontos insuficientes.", character.pts + " pontos restantes.", "")
+            document.getElementById("subButtonBox1").style.display = "block"
+            document.getElementById("subButtonBox2").style.display = "none"
+            document.getElementById("subButtonBox3").style.display = "none"
+            document.getElementById("subButtonBox4").style.display = "none"
         }
         updatePlayer()
     }
@@ -118,9 +138,19 @@ const upDex = () => {
             character.pts -= 1
             character.dodge = 30+((character.dex-1)*5)
             printMessage("Você ganhou 1 nivel em Destreza.", character.pts + " pontos restantes.", "")
+            if (character.pts == 0) {
+                document.getElementById("subButtonBox1").style.display = "block"
+                document.getElementById("subButtonBox2").style.display = "none"
+                document.getElementById("subButtonBox3").style.display = "none"
+                document.getElementById("subButtonBox4").style.display = "none"
+            }
         }
         else {
             printMessage("Pontos insuficientes.", character.pts + " pontos restantes.", "")
+            document.getElementById("subButtonBox1").style.display = "block"
+            document.getElementById("subButtonBox2").style.display = "none"
+            document.getElementById("subButtonBox3").style.display = "none"
+            document.getElementById("subButtonBox4").style.display = "none"
         }
         updatePlayer()
     }
@@ -132,9 +162,19 @@ const upInt = () => {
             character.pts -= 1
             character.mp = 100+((character.int-1)*10)
             printMessage("Você ganhou 1 nivel em Inteligência.", character.pts + " pontos restantes.", "")
+            if (character.pts == 0) {
+                document.getElementById("subButtonBox1").style.display = "block"
+                document.getElementById("subButtonBox2").style.display = "none"
+                document.getElementById("subButtonBox3").style.display = "none"
+                document.getElementById("subButtonBox4").style.display = "none"
+            }
         }
         else {
             printMessage("Pontos insuficientes.", character.pts + " pontos restantes.", "")
+            document.getElementById("subButtonBox1").style.display = "block"
+            document.getElementById("subButtonBox2").style.display = "none"
+            document.getElementById("subButtonBox3").style.display = "none"
+            document.getElementById("subButtonBox4").style.display = "none"
         }
         updatePlayer()
     }
@@ -146,9 +186,19 @@ const upCon = () => {
             character.pts -= 1
             character.hp = 100+((character.con-1)*10)
             printMessage("Você ganhou 1 nivel em Constituição.", character.pts + " pontos restantes.", "")
+            if (character.pts == 0) {
+                document.getElementById("subButtonBox1").style.display = "block"
+                document.getElementById("subButtonBox2").style.display = "none"
+                document.getElementById("subButtonBox3").style.display = "none"
+                document.getElementById("subButtonBox4").style.display = "none"
+            }
         }
         else {
             printMessage("Pontos insuficientes.", character.pts + " pontos restantes.", "")
+            document.getElementById("subButtonBox1").style.display = "block"
+            document.getElementById("subButtonBox2").style.display = "none"
+            document.getElementById("subButtonBox3").style.display = "none"
+            document.getElementById("subButtonBox4").style.display = "none"
         }
         updatePlayer()
     } 
@@ -180,20 +230,26 @@ const playerAtk = () => {
                 if (mainTarget.hp <= 0) {
                     // character.exp += mainTarget.exp
                     printMessage("Você causou " + damagePos + " de dano.", "O alvo está morto.", "Você ganhou " + mainTarget.exp + " de exp.")
-                    upExp(mainTarget.exp)
                     document.getElementById("subContainer2").style.display = "none"
                     document.getElementById("subButtonBox1").style.display = "block"
                     document.getElementById("subButtonBox2").style.display = "none"
+                    document.getElementById("subButtonBox3").style.display = "none"
+                    document.getElementById("subButtonBox4").style.display = "none"
+                    upExp(mainTarget.exp)
                 } else {
                     printMessage("Você causou " + damagePos + " de dano.", "", "")
+                    document.getElementById("subButtonBox1").style.display = "none"
                     document.getElementById("subButtonBox2").style.display = "none"
                     document.getElementById("subButtonBox3").style.display = "block"
+                    document.getElementById("subButtonBox4").style.display = "none"
                 }
             }
             else {
                 printMessage("Você errou o ataque.", "", "")
+                document.getElementById("subButtonBox1").style.display = "none"
                 document.getElementById("subButtonBox2").style.display = "none"
                 document.getElementById("subButtonBox3").style.display = "block"
+                document.getElementById("subButtonBox4").style.display = "none"
             }
         }
     }
@@ -291,6 +347,10 @@ const upExp = (exp) => {
             }
         }
         printMessage("LEVEL UP!","Você ganhou " + exp + " de exp.", "Você possui " + character.pts + " pontos para distribuir.")
+        document.getElementById("subButtonBox1").style.display = "none"
+        document.getElementById("subButtonBox2").style.display = "none"
+        document.getElementById("subButtonBox3").style.display = "none"
+        document.getElementById("subButtonBox4").style.display = "block"
     } else {
         character.exp += exp
     }

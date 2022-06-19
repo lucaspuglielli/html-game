@@ -46,20 +46,20 @@
                         <td id="playerWeaponMax"></td>
                     </tr>
                     <tr>
-                        <td><button onclick="upStr()" class="statsButton">Strength:</button></td>
+                        <td>Constitution:</td>
+                        <td id="playerCon"></td>
+                    </tr>
+                    <tr>
+                        <td>Strength:</td>
                         <td id="playerStr"></td>
                     </tr>
                     <tr>
-                        <td><button onclick="upDex()" class="statsButton">Dexterity:</button></td>
+                        <td>Dexterity:</td>
                         <td id="playerDex"></td>
                     </tr>
                     <tr>
-                        <td><button onclick="upInt()" class="statsButton">Intelligence:</button></td>
+                        <td>Intelligence:</td>
                         <td id="playerInt"></td>
-                    </tr>
-                    <tr>
-                        <td><button onclick="upCon()" class="statsButton">Constitution:</button></td>
-                        <td id="playerCon"></td>
                     </tr>
                 </table>
             </div>
@@ -86,6 +86,12 @@
                 </div>
                 <div id="subButtonBox3">
                     <button onclick="targetAtk()" id="targetAtk">Enemy Attack</button>
+                </div>
+                <div id="subButtonBox4">
+                    <button onclick="upCon()">Constitution</button>
+                    <button onclick="upStr()">Strength</button>
+                    <button onclick="upDex()">Dexterity</button>
+                    <button onclick="upInt()">Intelligence</button>
                 </div>
             </div>
         </div>

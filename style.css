@@ -50,9 +50,9 @@ td {
     margin: 5px;
 }
 
-.statsButton{
+/* .statsButton{
     width: 100%;
-}
+} */
 
 #midBox{
     width: 564px;
@@ -92,6 +92,6 @@ td {
     flex-direction: column;
 }
 
-#subButtonBox1, #subButtonBox2, #subButtonBox3{
+#subButtonBox1, #subButtonBox2, #subButtonBox3, #subButtonBox4{
     display: none;
 }
