@@ -1,4 +1,4 @@
-let storeItems = [
+let store = [
     {
         name: "Battle Axe",
         weaponMin: 5,
@@ -57,13 +57,14 @@ let storeItems = [
 ]
 
 const buyItem = (num) => {
-    if (character.gold < storeItems[num].cost) {
+    if (character.gold < store[num].cost) {
         printMessage("Gold insuficiente","","")
     } else {
-        let item = storeItems.splice(num, 1)
+        let item = store.splice(num, 1)
         console.log(item[0])
         character.gold -= item[0].cost
         character.bag.push(item[0])
         printMessage("Você comprou " + item[0].name,"","")
+        storeItems()
     }
 }
