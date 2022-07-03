@@ -17,6 +17,7 @@ const createCharacter = () => {
     let exp = 0
     let pts = 5
     let gold = 0
+    let bag = []
     return {
         name,
         hp,
@@ -32,7 +33,8 @@ const createCharacter = () => {
         lvl,
         exp,
         pts,
-        gold
+        gold,
+        bag
     }
 }
 
@@ -81,6 +83,7 @@ const newCharacter = () => {
         document.getElementById("subButtonBox2").style.display = "none"
         document.getElementById("subButtonBox3").style.display = "none"
         document.getElementById("subButtonBox4").style.display = "block"
+        document.getElementById("subButtonBox5").style.display = "none"
         document.getElementById("subContainer1").style.display = "block"
         document.getElementById("subContainer2").style.display = "none"
         let progressBar = document.getElementById("progressBar")
@@ -95,6 +98,7 @@ const newCharacter = () => {
         document.getElementById("subButtonBox2").style.display = "none"
         document.getElementById("subButtonBox3").style.display = "none"
         document.getElementById("subButtonBox4").style.display = "none"
+        document.getElementById("subButtonBox5").style.display = "none"
         document.getElementById("newCharacter").style.display = "block"
     }
 }
@@ -119,6 +123,7 @@ const upStr = () => {
                 document.getElementById("subButtonBox2").style.display = "none"
                 document.getElementById("subButtonBox3").style.display = "none"
                 document.getElementById("subButtonBox4").style.display = "none"
+                document.getElementById("subButtonBox5").style.display = "none"
             }
         }
         else {
@@ -127,6 +132,7 @@ const upStr = () => {
             document.getElementById("subButtonBox2").style.display = "none"
             document.getElementById("subButtonBox3").style.display = "none"
             document.getElementById("subButtonBox4").style.display = "none"
+            document.getElementById("subButtonBox5").style.display = "none"
         }
         updatePlayer()
     }
@@ -143,6 +149,7 @@ const upDex = () => {
                 document.getElementById("subButtonBox2").style.display = "none"
                 document.getElementById("subButtonBox3").style.display = "none"
                 document.getElementById("subButtonBox4").style.display = "none"
+                document.getElementById("subButtonBox5").style.display = "none"
             }
         }
         else {
@@ -151,6 +158,7 @@ const upDex = () => {
             document.getElementById("subButtonBox2").style.display = "none"
             document.getElementById("subButtonBox3").style.display = "none"
             document.getElementById("subButtonBox4").style.display = "none"
+            document.getElementById("subButtonBox5").style.display = "none"
         }
         updatePlayer()
     }
@@ -167,6 +175,7 @@ const upInt = () => {
                 document.getElementById("subButtonBox2").style.display = "none"
                 document.getElementById("subButtonBox3").style.display = "none"
                 document.getElementById("subButtonBox4").style.display = "none"
+                document.getElementById("subButtonBox5").style.display = "none"
             }
         }
         else {
@@ -175,6 +184,7 @@ const upInt = () => {
             document.getElementById("subButtonBox2").style.display = "none"
             document.getElementById("subButtonBox3").style.display = "none"
             document.getElementById("subButtonBox4").style.display = "none"
+            document.getElementById("subButtonBox5").style.display = "none"
         }
         updatePlayer()
     }
@@ -191,6 +201,7 @@ const upCon = () => {
                 document.getElementById("subButtonBox2").style.display = "none"
                 document.getElementById("subButtonBox3").style.display = "none"
                 document.getElementById("subButtonBox4").style.display = "none"
+                document.getElementById("subButtonBox5").style.display = "none"
             }
         }
         else {
@@ -199,6 +210,7 @@ const upCon = () => {
             document.getElementById("subButtonBox2").style.display = "none"
             document.getElementById("subButtonBox3").style.display = "none"
             document.getElementById("subButtonBox4").style.display = "none"
+            document.getElementById("subButtonBox5").style.display = "none"
         }
         updatePlayer()
     } 
@@ -212,6 +224,31 @@ const rest = () => {
         printMessage("Você está descansado.", "", "")
         updatePlayer()
     }
+}
+
+const bagItems = () => {
+    document.getElementById("subButtonBox5").innerHTML = ""
+    for (i = 0; i < character.bag.length; i++) {
+        document.getElementById("subButtonBox5").innerHTML += '<button onclick="equipItem(' + i + ')">' + character.bag[i].name + '</button>'
+    }
+    document.getElementById("subButtonBox5").innerHTML += '<button onclick="closeBag()">Back</button>'
+}
+
+const openBag = () => {
+    document.getElementById("subButtonBox1").style.display = "none"
+    document.getElementById("subButtonBox2").style.display = "none"
+    document.getElementById("subButtonBox3").style.display = "none"
+    document.getElementById("subButtonBox4").style.display = "none"
+    document.getElementById("subButtonBox5").style.display = "block"
+    bagItems()
+}
+
+const closeBag = () => {
+    document.getElementById("subButtonBox1").style.display = "block"
+    document.getElementById("subButtonBox2").style.display = "none"
+    document.getElementById("subButtonBox3").style.display = "none"
+    document.getElementById("subButtonBox4").style.display = "none"
+    document.getElementById("subButtonBox5").style.display = "none"
 }
 
 const playerAtk = () => {
@@ -235,6 +272,7 @@ const playerAtk = () => {
                     document.getElementById("subButtonBox2").style.display = "none"
                     document.getElementById("subButtonBox3").style.display = "none"
                     document.getElementById("subButtonBox4").style.display = "none"
+                    document.getElementById("subButtonBox5").style.display = "none"
                     upExp(mainTarget.exp)
                 } else {
                     printMessage("Você causou " + damagePos + " de dano.", "", "")
@@ -242,6 +280,7 @@ const playerAtk = () => {
                     document.getElementById("subButtonBox2").style.display = "none"
                     document.getElementById("subButtonBox3").style.display = "block"
                     document.getElementById("subButtonBox4").style.display = "none"
+                    document.getElementById("subButtonBox5").style.display = "none"
                 }
             }
             else {
@@ -250,6 +289,7 @@ const playerAtk = () => {
                 document.getElementById("subButtonBox2").style.display = "none"
                 document.getElementById("subButtonBox3").style.display = "block"
                 document.getElementById("subButtonBox4").style.display = "none"
+                document.getElementById("subButtonBox5").style.display = "none"
             }
         }
     }
@@ -351,6 +391,7 @@ const upExp = (exp) => {
         document.getElementById("subButtonBox2").style.display = "none"
         document.getElementById("subButtonBox3").style.display = "none"
         document.getElementById("subButtonBox4").style.display = "block"
+        document.getElementById("subButtonBox5").style.display = "none"
     } else {
         character.exp += exp
     }

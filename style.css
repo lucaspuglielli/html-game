@@ -92,6 +92,6 @@ td {
     flex-direction: column;
 }
 
-#subButtonBox1, #subButtonBox2, #subButtonBox3, #subButtonBox4{
+#subButtonBox1, #subButtonBox2, #subButtonBox3, #subButtonBox4, #subButtonBox5{
     display: none;
 }
