@@ -1,5 +1,6 @@
 let character 
 let mainTarget
+let equipedWeapon
 
 const createCharacter = () => {
     let name = prompt("Qual seu nome?")
@@ -155,7 +156,7 @@ const upInt = () => {
         if (character.pts >= 1) {
             character.int += 1
             character.pts -= 1
-            character.mp = 100+((character.int-1)*10)
+            character.mp += ((character.int-1)*10)
             printMessage("Você ganhou 1 nivel em Inteligência.", character.pts + " pontos restantes.", "")
             if (character.pts == 0) {
                 showButtons("subButtonBox1")
@@ -173,7 +174,7 @@ const upCon = () => {
         if (character.pts >= 1) {
             character.con += 1
             character.pts -= 1
-            character.hp = 100+((character.con-1)*10)
+            character.hp += ((character.con-1)*10)
             printMessage("Você ganhou 1 nivel em Constituição.", character.pts + " pontos restantes.", "")
             if (character.pts == 0) {
                 showButtons("subButtonBox1")
@@ -225,6 +226,47 @@ const closeStore = () => {
 const openBag = () => {
     showButtons("subButtonBox5")
     bagItems()
+}
+
+const equipItem = (num) => {
+    if (equipedWeapon == undefined) {
+        equipedWeapon = character.bag[num]
+        character.weaponMin += equipedWeapon.weaponMin
+        character.weaponMax += equipedWeapon.weaponMax
+        character.str += equipedWeapon.str
+        character.dex += equipedWeapon.dex
+        character.dodge += (equipedWeapon.dex*5)
+        character.int += equipedWeapon.int
+        character.mp += (equipedWeapon.int*10)
+        character.con += equipedWeapon.con
+        character.hp += (equipedWeapon.con*10)
+        character.armor += equipedWeapon.armor
+    } else {
+        let newWeapon = character.bag[num]
+        character.weaponMin -= equipedWeapon.weaponMin
+        character.weaponMax -= equipedWeapon.weaponMax
+        character.str -= equipedWeapon.str
+        character.dex -= equipedWeapon.dex
+        character.dodge -= (equipedWeapon.dex*5)
+        character.int -= equipedWeapon.int
+        character.mp -= (equipedWeapon.int*10)
+        character.con -= equipedWeapon.con
+        character.hp -= (equipedWeapon.con*10)
+        character.armor -= equipedWeapon.armor
+        character.weaponMin += newWeapon.weaponMin
+        character.weaponMax += newWeapon.weaponMax
+        character.str += newWeapon.str
+        character.dex += newWeapon.dex
+        character.dodge += (newWeapon.dex*5)
+        character.int += newWeapon.int
+        character.mp += (newWeapon.int*10)
+        character.con += newWeapon.con
+        character.hp += (newWeapon.con*10)
+        character.armor += newWeapon.armor
+        equipedWeapon = newWeapon
+    }
+    printMessage("Você equipou: " + equipedWeapon.name,"","")
+    updatePlayer()
 }
 
 const closeBag = () => {
