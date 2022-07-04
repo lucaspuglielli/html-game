@@ -17,7 +17,7 @@ const createCharacter = () => {
     let lvl = 1
     let exp = 0
     let pts = 5
-    let gold = 0
+    let gold = 100
     let bag = []
     return {
         name,
@@ -286,7 +286,8 @@ const playerAtk = () => {
                 mainTarget.hp -= damagePos
                 if (mainTarget.hp <= 0) {
                     // character.exp += mainTarget.exp
-                    printMessage("Você causou " + damagePos + " de dano.", "O alvo está morto.", "Você ganhou " + mainTarget.exp + " de exp.")
+                    character.gold += mainTarget.gold
+                    printMessage("Você causou " + damagePos + " de dano.", "O alvo está morto.", "Você ganhou " + mainTarget.exp + " de exp e " + mainTarget.gold + " de gold.")
                     document.getElementById("subContainer2").style.display = "none"
                     showButtons("subButtonBox1")
                     upExp(mainTarget.exp)
@@ -357,12 +358,12 @@ const printMessage = (message, message2, message3) => {
 const updatePlayer = () => {
     document.getElementById("playerName").innerHTML = character.name
     document.getElementById("playerLvl").innerHTML = character.lvl
+    document.getElementById("playerGold").innerHTML = character.gold
     document.getElementById("playerHp").innerHTML = (character.hp + " / " + (100 + ((character.con-1)*10)))
     document.getElementById("playerMp").innerHTML = (character.mp + " / " + (100 + ((character.int-1)*10)))
     document.getElementById("playerArmor").innerHTML = character.armor
     document.getElementById("playerDodge").innerHTML = character.dodge
-    document.getElementById("playerWeaponMin").innerHTML = character.weaponMin
-    document.getElementById("playerWeaponMax").innerHTML = character.weaponMax
+    document.getElementById("playerDamage").innerHTML = character.weaponMin + " - " + character.weaponMax
     document.getElementById("playerStr").innerHTML = character.str
     document.getElementById("playerDex").innerHTML = character.dex
     document.getElementById("playerInt").innerHTML = character.int
@@ -376,8 +377,7 @@ const updateTarget = () => {
     document.getElementById("targetMp").innerHTML = (mainTarget.mp + " / " + (100 + ((mainTarget.int-1)*10)))
     document.getElementById("targetArmor").innerHTML = mainTarget.armor
     document.getElementById("targetDodge").innerHTML = mainTarget.dodge
-    document.getElementById("targetWeaponMin").innerHTML = mainTarget.weaponMin
-    document.getElementById("targetWeaponMax").innerHTML = mainTarget.weaponMax
+    document.getElementById("targetDamage").innerHTML = mainTarget.weaponMin + " - " + mainTarget.weaponMax
     document.getElementById("targetStr").innerHTML = mainTarget.str
     document.getElementById("targetDex").innerHTML = mainTarget.dex
     document.getElementById("targetInt").innerHTML = mainTarget.int
@@ -404,7 +404,7 @@ const upExp = (exp) => {
                 lvlExp = Math.floor(100 * (1.4 ** (character.lvl-1)))
             }
         }
-        printMessage("LEVEL UP!","Você ganhou " + exp + " de exp.", "Você possui " + character.pts + " pontos para distribuir.")
+        printMessage("LEVEL UP!","Você ganhou " + exp + " de exp e " + mainTarget.gold + " de gold.", "Você possui " + character.pts + " pontos para distribuir.")
         showButtons("subButtonBox4")
     } else {
         character.exp += exp

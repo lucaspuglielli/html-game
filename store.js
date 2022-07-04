@@ -70,11 +70,11 @@ const buyItem = (num) => {
         character.bag.push(item[0])
         printMessage("Você comprou " + item[0].name,"","")
         storeItems()
+        updatePlayer()
     }
 }
 
 const openItemTooltip = (location, i) => {
-    let item = location
     document.getElementById("messageBox").style.display = "none"
     document.getElementById("scrollBox").style.display = "flex"
     document.getElementById("scrollBox").innerHTML = "<div>" + location[i].name + "</div><div id='itemImg'></div><div>Damage: " + location[i].weaponMin + " - " + location[i].weaponMax + "</div><div>Cons: " + location[i].con + " | Str: " + location[i].str + " | Dex: " + location[i].dex + " | Int: " + location[i].int + "</div><div>Armor: " + location[i].armor + "</div><div>Price: " + location[i].cost + "</div>"
