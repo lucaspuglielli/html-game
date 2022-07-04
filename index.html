@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./characters.js"></script>
+    <script src="./store.js"></script>
     <script src="./main.js"></script>
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
@@ -22,6 +23,10 @@
                         <td id="playerLvl"></td>
                     </tr>
                     <tr>
+                        <td>Gold:</td>
+                        <td id="playerGold"></td>
+                    </tr>
+                    <tr>
                         <td>Health:</td>
                         <td id="playerHp"></td>
                     </tr>
@@ -30,20 +35,16 @@
                         <td id="playerMp"></td>
                     </tr>
                     <tr>
+                        <td>Damage:</td>
+                        <td id="playerDamage"></td>
+                    </tr>
+                    <tr>
                         <td>Armor:</td>
                         <td id="playerArmor"></td>
                     </tr>
                     <tr>
                         <td>Dodge:</td>
                         <td id="playerDodge"></td>
-                    </tr>
-                    <tr>
-                        <td>Weapon min:</td>
-                        <td id="playerWeaponMin"></td>
-                    </tr>
-                    <tr>
-                        <td>Weapon max:</td>
-                        <td id="playerWeaponMax"></td>
                     </tr>
                     <tr>
                         <td>Constitution:</td>
@@ -71,12 +72,16 @@
                 <div id="message2"></div>
                 <div id="message3"></div>
             </div>
+            <div id="scrollBox">
+            </div>
             <div id="expBar">
                 <div id="progressBar"></div>
             </div>
             <div id="buttonBox">
                 <div id="subButtonBox1">
                     <button onclick="rest()">Rest</button>
+                    <button onclick="openBag()">Bag</button>
+                    <button onclick="openStore()">Store</button>
                     <button onclick="newTarget(0)">Knight</button>
                     <button onclick="newTarget(1)">Archer</button>
                     <button onclick="newTarget(2)">Mage</button>
@@ -92,6 +97,10 @@
                     <button onclick="upStr()">Strength</button>
                     <button onclick="upDex()">Dexterity</button>
                     <button onclick="upInt()">Intelligence</button>
+                </div>
+                <div id="subButtonBox5">
+                </div>
+                <div id="subButtonBox6">
                 </div>
             </div>
         </div>
@@ -114,20 +123,16 @@
                         <td id="targetMp"></td>
                     </tr>
                     <tr>
+                        <td>Damage:</td>
+                        <td id="targetDamage"></td>
+                    </tr>
+                    <tr>
                         <td>Armor:</td>
                         <td id="targetArmor"></td>
                     </tr>
                     <tr>
                         <td>Dodge:</td>
                         <td id="targetDodge"></td>
-                    </tr>
-                    <tr>
-                        <td>Weapon min:</td>
-                        <td id="targetWeaponMin"></td>
-                    </tr>
-                    <tr>
-                        <td>Weapon max:</td>
-                        <td id="targetWeaponMax"></td>
                     </tr>
                     <tr>
                         <td>Strength:</td>

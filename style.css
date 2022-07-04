@@ -50,6 +50,12 @@ td {
     margin: 5px;
 }
 
+#itemImg {
+    width: 200px;
+    height: 200px;
+    background-size: contain;
+}
+
 /* .statsButton{
     width: 100%;
 } */
@@ -58,15 +64,23 @@ td {
     width: 564px;
 }
 
-#messageBox{
+#messageBox, #scrollBox{
     display: flex;
     flex-direction: column;
     text-align: center;
     justify-content: center;
     align-items: center;
     height: 78%;
+    max-height: 417px;
     box-sizing: border-box;
     border: 1px solid black;
+    overflow: auto;
+    overflow-x: hidden;
+    padding: 25px;
+}
+
+#scrollBox{
+    display: none;
 }
 
 #expBar{
@@ -92,6 +106,6 @@ td {
     flex-direction: column;
 }
 
-#subButtonBox1, #subButtonBox2, #subButtonBox3, #subButtonBox4{
+#subButtonBox1, #subButtonBox2, #subButtonBox3, #subButtonBox4, #subButtonBox5, #subButtonBox6{
     display: none;
 }
