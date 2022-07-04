@@ -201,7 +201,7 @@ const rest = () => {
 const bagItems = () => {
     document.getElementById("subButtonBox5").innerHTML = ""
     for (i = 0; i < character.bag.length; i++) {
-        document.getElementById("subButtonBox5").innerHTML += '<button onclick="equipItem(' + i + ')">' + character.bag[i].name + '</button>'
+        document.getElementById("subButtonBox5").innerHTML += '<button onmouseover="openItemTooltip(character.bag,' + i + ')" onmouseout="closeItemTooltip()" onclick="equipItem(' + i + ')">' + character.bag[i].name + '</button>'
     }
     document.getElementById("subButtonBox5").innerHTML += '<button onclick="closeBag()">Back</button>'
 }
@@ -209,40 +209,34 @@ const bagItems = () => {
 const storeItems = () => {
     document.getElementById("subButtonBox6").innerHTML = ""
     for (i = 0; i < store.length; i++) {
-        document.getElementById("subButtonBox6").innerHTML += '<button onclick="buyItem(' + i + ')">' + store[i].name + '</button>'
+        document.getElementById("subButtonBox6").innerHTML += '<button onmouseover="openItemTooltip(store,' + i + ')" onmouseout="closeItemTooltip()" onclick="buyItem(' + i + ')">' + store[i].name + '</button>'
     }
     document.getElementById("subButtonBox6").innerHTML += '<button onclick="closeStore()">Back</button>'
 }
 
 const openStore = () => {
     showButtons("subButtonBox6")
+    document.getElementById("messageBox").style.display = "none"
+    document.getElementById("scrollBox").style.display = "flex"
     storeItems()
 }
 
 const closeStore = () => {
     showButtons("subButtonBox1")
+    document.getElementById("messageBox").style.display = "flex"
+    document.getElementById("scrollBox").innerHTML = ""
+    document.getElementById("scrollBox").style.display = "none"
 }
 
 const openBag = () => {
     showButtons("subButtonBox5")
+    document.getElementById("messageBox").style.display = "none"
+    document.getElementById("scrollBox").style.display = "flex"
     bagItems()
 }
 
 const equipItem = (num) => {
-    if (equipedWeapon == undefined) {
-        equipedWeapon = character.bag[num]
-        character.weaponMin += equipedWeapon.weaponMin
-        character.weaponMax += equipedWeapon.weaponMax
-        character.str += equipedWeapon.str
-        character.dex += equipedWeapon.dex
-        character.dodge += (equipedWeapon.dex*5)
-        character.int += equipedWeapon.int
-        character.mp += (equipedWeapon.int*10)
-        character.con += equipedWeapon.con
-        character.hp += (equipedWeapon.con*10)
-        character.armor += equipedWeapon.armor
-    } else {
-        let newWeapon = character.bag[num]
+    if (equipedWeapon != undefined) {
         character.weaponMin -= equipedWeapon.weaponMin
         character.weaponMax -= equipedWeapon.weaponMax
         character.str -= equipedWeapon.str
@@ -253,24 +247,28 @@ const equipItem = (num) => {
         character.con -= equipedWeapon.con
         character.hp -= (equipedWeapon.con*10)
         character.armor -= equipedWeapon.armor
-        character.weaponMin += newWeapon.weaponMin
-        character.weaponMax += newWeapon.weaponMax
-        character.str += newWeapon.str
-        character.dex += newWeapon.dex
-        character.dodge += (newWeapon.dex*5)
-        character.int += newWeapon.int
-        character.mp += (newWeapon.int*10)
-        character.con += newWeapon.con
-        character.hp += (newWeapon.con*10)
-        character.armor += newWeapon.armor
-        equipedWeapon = newWeapon
     }
+    let newWeapon = character.bag[num]
+    character.weaponMin += newWeapon.weaponMin
+    character.weaponMax += newWeapon.weaponMax
+    character.str += newWeapon.str
+    character.dex += newWeapon.dex
+    character.dodge += (newWeapon.dex*5)
+    character.int += newWeapon.int
+    character.mp += (newWeapon.int*10)
+    character.con += newWeapon.con
+    character.hp += (newWeapon.con*10)
+    character.armor += newWeapon.armor
+    equipedWeapon = newWeapon
     printMessage("Você equipou: " + equipedWeapon.name,"","")
     updatePlayer()
 }
 
 const closeBag = () => {
     showButtons("subButtonBox1")
+    document.getElementById("messageBox").style.display = "flex"
+    document.getElementById("scrollBox").innerHTML = ""
+    document.getElementById("scrollBox").style.display = "none"
 }
 
 const playerAtk = () => {
@@ -346,15 +344,15 @@ const printMessage = (message, message2, message3) => {
     document.getElementById("message3").innerHTML = message3;
 }
 
-const showStore = () => {
-    document.getElementById("messageBox").style.display = "none"
-    document.getElementById("scrollBox").style.display = "flex"
-    document.getElementById("subButtonBox6").innerHTML = ""
-    for (i = 0; i < character.bag.length; i++) {
-        document.getElementById("subButtonBox6").innerHTML += '<button onclick="equipItem(' + i + ')">' + character.bag[i].name + '</button>'
-    }
-    document.getElementById("subButtonBox6").innerHTML += '<button onclick="closeBag()">Back</button>'
-}
+// const showStore = () => {
+//     document.getElementById("messageBox").style.display = "none"
+//     document.getElementById("scrollBox").style.display = "flex"
+//     document.getElementById("subButtonBox6").innerHTML = ""
+//     for (i = 0; i < character.bag.length; i++) {
+//         document.getElementById("subButtonBox6").innerHTML += '<button onclick="equipItem(' + i + ')">' + character.bag[i].name + '</button>'
+//     }
+//     document.getElementById("subButtonBox6").innerHTML += '<button onclick="closeBag()">Back</button>'
+// }
 
 const updatePlayer = () => {
     document.getElementById("playerName").innerHTML = character.name
